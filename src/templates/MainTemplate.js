@@ -1,20 +1,19 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import Button from 'components/atoms/Button/Button';
 import GlobalStyle from 'theme/GlobalStyle';
 import { theme } from 'theme/mainTheme';
 
-const Root = () => (
+const MainTemplate = ({ children }) => (
   <div>
     <GlobalStyle />
-    <ThemeProvider theme={theme}>
-      <Fragment>
-        <h1>hello</h1>
-        <Button>CLOSE / SAVE</Button>
-        <Button secondary>Remove</Button>
-      </Fragment>
-    </ThemeProvider>
+    <ThemeProvider theme={theme}>{children}</ThemeProvider>
   </div>
 );
 
-export default Root;
+MainTemplate.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export default MainTemplate;
