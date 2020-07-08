@@ -57,7 +57,7 @@ const StyledAvatar = styled.img`
 const StyledLinkButton = styled.a`
   position: absolute;
   right: 25px;
-  top: 25px;
+  top: 15px;
   display: block;
   width: 47px;
   height: 47px;
@@ -67,26 +67,16 @@ const StyledLinkButton = styled.a`
   background-position: 50%;
 `;
 
-const Card = ({ cardType }) => (
+const Card = ({ cardType, title, created, twitterName, articleUrl, content }) => (
   <StyledWrapper>
     <InnerWrapper activeColor={cardType}>
-      <StyledHeading>
-        <Heading>Hello Kamil</Heading>
-      </StyledHeading>
-      <DateInfo>3 days</DateInfo>
-      {cardType === 'twitter' && (
-        <StyledAvatar src="https://api.adorable.io/avatars/400/abott@adorable.io.png" />
-      )}
-      {cardType === 'article' && <StyledLinkButton href="https://www.youtube.com/" />}
+      <StyledHeading>{title}</StyledHeading>
+      <DateInfo>{created}</DateInfo>
+      {cardType === 'twitter' && <StyledAvatar src={`http://twivatar.glitch.me/${twitterName}`} />}
+      {cardType === 'article' && <StyledLinkButton href={articleUrl} />}
     </InnerWrapper>
     <InnerWrapper flex>
-      <Paragraph>
-        Occaecat irure proident est reprehenderit eu culpa adipisicing velit amet. Ullamco labore id
-        mollit occaecat ad velit. Irure anim officia reprehenderit officia pariatur proident anim ea
-        do laborum. Dolor in aliqua amet elit. Lorem adipisicing aliqua officia et ad tempor quis
-        nisi ea qui. Nostrud aliqua laborum cupidatat laborum culpa reprehenderit amet eiusmod
-        nostrud Lorem. Magna Lorem dolore duis occaecat adipisicing mollit magna dolore.
-      </Paragraph>
+      <Paragraph>{content}</Paragraph>
       <Button secondary>Remove</Button>
     </InnerWrapper>
   </StyledWrapper>
@@ -94,10 +84,17 @@ const Card = ({ cardType }) => (
 
 Card.propTypes = {
   cardType: PropTypes.oneOf(['note', 'twitter', 'article']),
+  title: PropTypes.string.isRequired,
+  created: PropTypes.string.isRequired,
+  twitterName: PropTypes.string,
+  articleUrl: PropTypes.string,
+  content: PropTypes.string.isRequired,
 };
 
 Card.defaultProps = {
   cardType: 'note',
+  twitterName: null,
+  articleUrl: null,
 };
 
 export default Card;
