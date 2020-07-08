@@ -5,8 +5,8 @@ import { theme } from '../src/theme/mainTheme';
 import GlobalStyle from '../src/theme/GlobalStyle';
 
 addDecorator((story) => (
-  <Fragment>
+  <>
     <GlobalStyle />
     <ThemeProvider theme={theme}>{story()}</ThemeProvider>
-  </Fragment>
+  </>
 ));

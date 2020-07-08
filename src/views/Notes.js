@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
+import UserPageTemplate from 'templates/UserPageTemplate';
 
-class Notes extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Hello Notes</h1>
-      </div>
-    );
-  }
-}
+const Notes = () => (
+  <UserPageTemplate pageType="note">
+    <h1>Hello notes</h1>
+  </UserPageTemplate>
+);
 
 export default Notes;

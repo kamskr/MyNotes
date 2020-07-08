@@ -9,7 +9,7 @@ import plusIcon from 'assets/icons/plus.svg';
 import twitterIcon from 'assets/icons/twitter.svg';
 
 export default {
-  title: 'ButtonIcon',
+  title: 'Atoms/ButtonIcon',
   decorators: [(storyFn) => <YellowBackground>{storyFn()}</YellowBackground>],
 };
 
