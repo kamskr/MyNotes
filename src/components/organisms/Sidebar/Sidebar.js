@@ -16,8 +16,7 @@ const StyledWrapper = styled.div`
   padding: 25px 0;
   height: 100vh;
   width: 150px;
-  background-color: ${({ activeColor, theme }) =>
-    activeColor ? theme[activeColor] : theme.twitter};
+  background-color: ${({ activeColor, theme }) => (activeColor ? theme[activeColor] : theme.note)};
   flex-direction: column;
   align-items: center;
   justify-content: space-between;

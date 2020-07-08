@@ -15,7 +15,4 @@ export const theme = {
     l: '2.4rem',
     xl: '4rem',
   },
-  fontWeight: {
-    regular: '50px',
-  },
 };
