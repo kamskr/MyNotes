@@ -77,8 +77,9 @@ class Card extends Component {
 
   render() {
     const { id, cardType, title, created, twitterName, articleUrl, content } = this.props;
-
+    console.log(cardType);
     if (this.state.redirect) {
+      console.log(cardType);
       return <Redirect to={`${cardType}/${id}`} />;
     }
 
