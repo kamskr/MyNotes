@@ -69,14 +69,21 @@ const StyledLinkButton = styled.a`
 `;
 
 class Card extends Component {
-  state: {
+  state = {
     redirect: false,
   };
 
+  handleCardClick = () => this.setState({ redirect: true });
+
   render() {
     const { id, cardType, title, created, twitterName, articleUrl, content } = this.props;
+
+    if (this.state.redirect) {
+      return <Redirect to={`${cardType}/${id}`} />;
+    }
+
     return (
-      <StyledWrapper>
+      <StyledWrapper onClick={this.handleCardClick}>
         <InnerWrapper activeColor={cardType}>
           <StyledHeading>{title}</StyledHeading>
           <DateInfo>{created}</DateInfo>
