@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import { NavLink } from 'react-router-dom';
 import penIcon from 'assets/icons/pen.svg';
@@ -7,6 +8,7 @@ import twitterIcon from 'assets/icons/twitter.svg';
 import bulbIcon from 'assets/icons/bulb.svg';
 import logoutIcon from 'assets/icons/logout.svg';
 import logoIcon from 'assets/icons/logo.svg';
+import withContext from 'hoc/withContext';
 
 const StyledWrapper = styled.div`
   position: fixed;
@@ -44,8 +46,8 @@ const StyledLinksList = styled.ul`
   list-style: none;
 `;
 
-const Sidebar = ({ pageType }) => (
-  <StyledWrapper activeColor={pageType}>
+const Sidebar = ({ pageContext }) => (
+  <StyledWrapper activeColor={pageContext}>
     <StyledLogoLink to="/" />
     <StyledLinksList>
       <li>
@@ -63,4 +65,12 @@ const Sidebar = ({ pageType }) => (
   </StyledWrapper>
 );
 
-export default Sidebar;
+Sidebar.propTypes = {
+  pageContext: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+};
+
+Sidebar.defaultProps = {
+  pageContext: 'notes',
+};
+
+export default withContext(Sidebar);
