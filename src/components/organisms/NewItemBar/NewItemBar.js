@@ -19,6 +19,8 @@ const StyledWrapper = styled.div`
   width: 680px;
   background-color: white;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  transform: translate(${({ isVisible }) => (isVisible ? '0' : '100%')});
+  transition: transform 0.25s ease-in-out;
 `;
 
 const StyledTextArea = styled(Input)`
@@ -27,10 +29,15 @@ const StyledTextArea = styled(Input)`
   height: 30vh;
 `;
 
-const NewItemBar = ({ pageContext }) => (
-  <StyledWrapper activecolor={pageContext}>
+const StyledInput = styled(Input)`
+  margin-top: 30px;
+`;
+
+const NewItemBar = ({ pageContext, isVisible }) => (
+  <StyledWrapper isVisible={isVisible} activecolor={pageContext}>
     <Heading big>Create new {pageContext}</Heading>
-    <Input placeholder="title" />
+    <StyledInput placeholder={pageContext === 'twitters' ? 'Account name' : 'Title'} />
+    {pageContext === 'articles' && <StyledInput placeholder="link" />}
     <StyledTextArea as="textarea" placeholder="description" />
     <Button activecolor={pageContext}>Add Note</Button>
   </StyledWrapper>

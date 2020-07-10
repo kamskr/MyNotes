@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import UserPageTemplate from 'templates/UserPageTemplate';
@@ -48,6 +48,7 @@ const StyledParagraph = styled(Paragraph)`
 `;
 
 const StyledButtonIcon = styled(ButtonIcon)`
+  z-index: 10000;
   position: fixed;
   bottom: 40px;
   right: 40px;
@@ -56,23 +57,41 @@ const StyledButtonIcon = styled(ButtonIcon)`
   background-size: 35%;
 `;
 
-const GridTemplate = ({ children, pageContext }) => (
-  <UserPageTemplate>
-    <StyledWrapper>
-      <StyledPageHeader>
-        <Input search placeholder="Search" />
-        <StyledHeading big as="h1">
-          {pageContext}
-        </StyledHeading>
-        <StyledParagraph>6 {pageContext}</StyledParagraph>
-      </StyledPageHeader>
-      <StyledGrid>{children}</StyledGrid>
-      <StyledButtonIcon activeColor={pageContext} icon={plusIcon} />
-      <NewItemBar />
-    </StyledWrapper>
-  </UserPageTemplate>
-);
+class GridTemplate extends Component {
+  state = {
+    isNewItemBarVisible: false,
+  };
 
+  handleNewItemBarToggle = () =>
+    this.setState((prevState) => ({
+      isNewItemBarVisible: !prevState.isNewItemBarVisible,
+    }));
+
+  render() {
+    const { children, pageContext } = this.props;
+    const { isNewItemBarVisible } = this.state;
+    return (
+      <UserPageTemplate>
+        <StyledWrapper>
+          <StyledPageHeader>
+            <Input search placeholder="Search" />
+            <StyledHeading big as="h1">
+              {pageContext}
+            </StyledHeading>
+            <StyledParagraph>6 {pageContext}</StyledParagraph>
+          </StyledPageHeader>
+          <StyledGrid>{children}</StyledGrid>
+          <StyledButtonIcon
+            onClick={this.handleNewItemBarToggle}
+            activeColor={pageContext}
+            icon={plusIcon}
+          />
+          <NewItemBar isVisible={isNewItemBarVisible} />
+        </StyledWrapper>
+      </UserPageTemplate>
+    );
+  }
+}
 GridTemplate.propTypes = {
   pageContext: PropTypes.string.isRequired,
   children: PropTypes.arrayOf(PropTypes.object).isRequired,
