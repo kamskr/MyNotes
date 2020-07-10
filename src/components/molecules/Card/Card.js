@@ -136,9 +136,9 @@ Card.defaultProps = {
 // });
 
 // secondMethod
-const mapDispatchToProps = {
-  removeItem,
-};
-export default connect(null, mapDispatchToProps)(Card);
+// const mapDispatchToProps = {
+//   removeItem,
+// };
+// export default connect(null, mapDispatchToProps)(Card);
 //third method
-// export default connect(null, { removeItem })(Card);
+export default connect(null, { removeItem })(Card);
