@@ -1,14 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import MainTemplate from 'templates/MainTemplate';
-import Articles from './Articles';
-import Twitters from './Twitters';
-import Notes from './Notes';
-import DetailsPage from './DetailsPage';
-import { routes } from 'routes';
-//redux
 import { Provider } from 'react-redux';
+import { routes } from 'routes';
 import store from '../redux/store';
+import MainTemplate from 'templates/MainTemplate';
+import Notes from 'views/Notes';
+import Articles from 'views/Articles';
+import Twitters from 'views/Twitters';
+import DetailsPage from 'views/DetailsPage';
 
 const Root = () => (
   <Provider store={store}>
